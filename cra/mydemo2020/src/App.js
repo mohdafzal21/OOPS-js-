@@ -1,37 +1,65 @@
-import React, { Component } from 'react'
-import List from './List'
-import ImageGallery from './ImageGallery'
-import Comment from './Comment'
-const friends = ["tom1","plnt", "smacky"]
-const name = "tom"
-const products = [
-  {productName : 'smaple ' , vote: 1},
-  {productName : 'smaple ' , vote: 1},
-  {productName : 'smaple ' , vote: 1}
-]
-const comment= {
-  author : {avatarUrl : "some url", name: 'TOM'},
-  date : Date.now(),
-  text : "text inside the comment "
-}
-const  author = {avatarUrl : "some url", name: 'TOM'}
+import React, { Component } from 'react';
+import Counter from './Counter'
+//props - immutable
+//state - mutable,
+// why do we need state ?
+// enclosing the scope of state in the component 
+// every component its own state 
+// there are components with/wihtout state 
 
-const images = ["https://images.unsplash.com/photo-1558981023-1d4b7dd8dfb9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60","https://images.unsplash.com/photo-1558981023-1d4b7dd8dfb9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60","https://images.unsplash.com/photo-1558981023-1d4b7dd8dfb9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"]
-export class App extends Component {
-  render() {
-    console.log("App " , this.props)
-    return (
+// what  is state ?
+// THe live execution data of the component - Local Memory 
+//State update the UI 
+//lifecycleevents 
+class App extends Component {
+  state = {
+    toggle : false ,
+    count : 0
+  }
+  
+  //
+  incrementCount = ()=> {
+    this.setState({
+        count : this.state.count + 1
+    })
+  }
+  decrementCount =()=>{
+    this.setState({
+      count : this.state.count - 1
+    })
+  }
+   
+  //method 
+  handleClick=()=>{
+   //explicit mutation - setState
+   //look for the component state object and return the updated state 
+   console.log("before setState",this.state.toggle)
+   this.setState({
+     toggle : !this.state.toggle
+   })
+   
+  }
+
+  render() { 
+      console.log("render")
+    return ( 
       <div>
-  <h1>Hello user - { this.props.user2}</h1>
-         <List friendName={name} friends={friends}  />
-         <List friendName={"Max"} friends = {["newtom", "newplant" , "newMax"]}  />
-         <ImageGallery  images={images}/>
-         <Comment author={author}  text={'some post' } date={Date.now() }/>
-         <hr/>
-        <Comment author={comment.author} text={comment.text} date={comment.date}  />
+        {this.state.toggle && <h2>Learning State</h2> }
+        <button onClick={this.handleClick}>SHOW Click</button>
+        <hr/>
+        <Counter 
+        incrementCount ={this.incrementCount}
+        decrementCount = {this.decrementCount}
+        count={this.state.count}/>
       </div>
-    )
+      );
   }
 }
+ 
+export default App;
 
-export default App
+// button.addEventListener('click', hello)
+
+// function hello(){
+//   console.log("hello")
+// }
