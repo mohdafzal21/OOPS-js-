@@ -1,44 +1,44 @@
 import React, { Component } from 'react'
-import Home from './Home'
-import Contact from './Contact'
-import Confirm from './Confirm'
-import About from './About'
-import Button from './Button'
-
-
+import ListContact from './contactApp/ListContact'
 export default class App extends Component {
   state = {
-    step : 0
+    contacts : [
+      {
+        id: '1',
+        name: 'afzal',
+        handle: '@afzal',
+        avatarURL: 'https://res.cloudinary.com/dspz2t0am/image/upload/v1545377545/undraw_experts3_3njd.svg'
+      },
+      {
+        id: '2',
+        name: 'tom',
+        handle: '@tom',
+        avatarURL: 'https://res.cloudinary.com/dspz2t0am/image/upload/v1545377545/undraw_experts3_3njd.svg'
+      },
+      {
+        id: '3',
+        name: 'Richard',
+        handle: '@richard',
+        avatarURL: 'https://res.cloudinary.com/dspz2t0am/image/upload/v1545377545/undraw_experts3_3njd.svg'
+      },
+    ]
   }
-  nextStep =()=>{
+
+  removeContact = (contact)=>{
+    console.log(contact)
     this.setState({
-      step : this.state.step + 1
+      contacts  : this.state.contacts.filter((c)=> c.id !== contact.id)
     })
   }
-  prevStep =()=>{
-    this.setState({
-      step : this.state.step - 1
-    })
-  }
-  
 
   render() {
-    const {step} = this.state
-    switch(step){
-      case 0 : 
-      return (
+    const {contacts} = this.state
+    return (
       <div>
-        <Button text1="next" text2="Prev" prevStep={this.prevStep}  nextStep={this.nextStep} />
-        <Home nextStep={this.nextStep} prevStep={this.prevStep}/>
-        </div>)
-      case 1 : 
-      return <About  nextStep={this.nextStep} prevStep={this.prevStep}/>
-      case 2 : 
-      return <Contact  nextStep={this.nextStep} prevStep={this.prevStep}/>
-      case 3 : 
-      return <Confirm   prevStep={this.prevStep}/>
-      default : 
-      return  <h1>Hello Default</h1>
-    }
+         <ListContact 
+        removeContact ={ this.removeContact}
+         name="My List" contacts={contacts} />
+      </div>
+    )
   }
 }
