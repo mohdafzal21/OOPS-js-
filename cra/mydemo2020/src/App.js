@@ -1,65 +1,44 @@
-import React, { Component } from 'react';
-import Counter from './Counter'
-//props - immutable
-//state - mutable,
-// why do we need state ?
-// enclosing the scope of state in the component 
-// every component its own state 
-// there are components with/wihtout state 
+import React, { Component } from 'react'
+import Home from './Home'
+import Contact from './Contact'
+import Confirm from './Confirm'
+import About from './About'
+import Button from './Button'
 
-// what  is state ?
-// THe live execution data of the component - Local Memory 
-//State update the UI 
-//lifecycleevents 
-class App extends Component {
+
+export default class App extends Component {
   state = {
-    toggle : false ,
-    count : 0
+    step : 0
+  }
+  nextStep =()=>{
+    this.setState({
+      step : this.state.step + 1
+    })
+  }
+  prevStep =()=>{
+    this.setState({
+      step : this.state.step - 1
+    })
   }
   
-  //
-  incrementCount = ()=> {
-    this.setState({
-        count : this.state.count + 1
-    })
-  }
-  decrementCount =()=>{
-    this.setState({
-      count : this.state.count - 1
-    })
-  }
-   
-  //method 
-  handleClick=()=>{
-   //explicit mutation - setState
-   //look for the component state object and return the updated state 
-   console.log("before setState",this.state.toggle)
-   this.setState({
-     toggle : !this.state.toggle
-   })
-   
-  }
 
-  render() { 
-      console.log("render")
-    return ( 
+  render() {
+    const {step} = this.state
+    switch(step){
+      case 0 : 
+      return (
       <div>
-        {this.state.toggle && <h2>Learning State</h2> }
-        <button onClick={this.handleClick}>SHOW Click</button>
-        <hr/>
-        <Counter 
-        incrementCount ={this.incrementCount}
-        decrementCount = {this.decrementCount}
-        count={this.state.count}/>
-      </div>
-      );
+        <Button text1="next" text2="Prev" prevStep={this.prevStep}  nextStep={this.nextStep} />
+        <Home nextStep={this.nextStep} prevStep={this.prevStep}/>
+        </div>)
+      case 1 : 
+      return <About  nextStep={this.nextStep} prevStep={this.prevStep}/>
+      case 2 : 
+      return <Contact  nextStep={this.nextStep} prevStep={this.prevStep}/>
+      case 3 : 
+      return <Confirm   prevStep={this.prevStep}/>
+      default : 
+      return  <h1>Hello Default</h1>
+    }
   }
 }
- 
-export default App;
-
-// button.addEventListener('click', hello)
-
-// function hello(){
-//   console.log("hello")
-// }
