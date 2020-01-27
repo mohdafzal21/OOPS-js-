@@ -9,11 +9,11 @@ import React, { Component } from 'react'
 //         )
 //     }
 // }
-
+//PResentational COmponents
 const Poster =(props)=>{
     return (
         <div>
-            <img src={props.image} width="200" height="250" /> 
+            <img src={props.image} width={props.width} height={props.height} /> 
         </div>
     )
 }

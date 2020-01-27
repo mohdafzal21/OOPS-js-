@@ -14,7 +14,7 @@ export default class Home extends Component {
                 <button onClick={prevStep}>Prev</button>
                 <button onClick={nextStep}>Next</button>
                 <hr/>
-                <Poster image={"https://images.unsplash.com/photo-1558980394-0a06c4631733?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"} />
+                <Poster width="1000" height="500" image={"https://images.unsplash.com/photo-1558980394-0a06c4631733?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"} />
                 <hr/>
                 {/* <img src={"https://images.unsplash.com/photo-1558980394-0a06c4631733?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"}/> */}
             </div>
