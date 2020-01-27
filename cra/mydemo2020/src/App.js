@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import ListContact from './contactApp/ListContact'
+import AddContact from './contactApp/AddContact'
+import Counter from './Counter'
 export default class App extends Component {
   state = {
     contacts : [
@@ -23,9 +25,19 @@ export default class App extends Component {
       },
     ]
   }
+  
+  //add new contact to the list 
+  addContact = (newcontact)=>{
+    console.log(newcontact)
+    // const prevState = this.state.contacts
+    // prevState.push(newcontact)
+    this.setState((prevState)=>({
+      contacts :[...prevState.contacts, newcontact]
+    }))
+
+  }
 
   removeContact = (contact)=>{
-    console.log(contact)
     this.setState({
       contacts  : this.state.contacts.filter((c)=> c.id !== contact.id)
     })
@@ -35,9 +47,13 @@ export default class App extends Component {
     const {contacts} = this.state
     return (
       <div>
+        <AddContact addContact={this.addContact}/>
+        <hr/>
          <ListContact 
         removeContact ={ this.removeContact}
          name="My List" contacts={contacts} />
+         <hr/>
+         <Counter/>
       </div>
     )
   }

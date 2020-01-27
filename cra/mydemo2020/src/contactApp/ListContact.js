@@ -6,7 +6,6 @@ class ListContact extends Component {
         query : ''
      }
      updateQuery=(input)=>{
-         console.log(input)
         this.setState({
             query : input.trim() 
         })
@@ -19,7 +18,9 @@ class ListContact extends Component {
         const showContacts = query === ''
                                     ? contacts 
                                     : contacts.filter((c)=> c.name.toLowerCase().includes(query.toLowerCase()))
-        return ( 
+        const newName = query === '' ?
+        null :  `${showContacts.length} of ${contacts.length} Showing`
+     return ( 
             <div>
             <input
              placeholder="Search here"
@@ -27,9 +28,9 @@ class ListContact extends Component {
                value={query}
                onChange={(e)=>this.updateQuery(e.target.value)}
               />
-            <h1>{name}</h1>
-           {showContacts.map((contact)=> (
-               <div key={contact.id}>
+            <h1>{newName}</h1>
+           {showContacts.map((contact,index)=> (
+               <div key={index}>
                    <li >
                        {contact.name} -{contact.handle}
                        <button onClick={()=>removeContact(contact)}>Remove</button>
