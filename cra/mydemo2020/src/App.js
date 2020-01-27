@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ListContact from './contactApp/ListContact'
 import AddContact from './contactApp/AddContact'
 import Counter from './Counter'
+import './App.css'
 export default class App extends Component {
   state = {
     contacts : [
@@ -38,8 +39,8 @@ export default class App extends Component {
   }
 
   removeContact = (contact)=>{
-    this.setState({
-      contacts  : this.state.contacts.filter((c)=> c.id !== contact.id)
+    this.setState(({contacts})=>{
+      contacts  : contacts.filter((c)=> c.id !== contact.id)
     })
   }
 

@@ -26,7 +26,7 @@ export default class AddContact extends Component {
         const {name,handle} = this.state
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}  className="formBorder">
                     <input 
                        name="name"
                        placeholder="enter name"

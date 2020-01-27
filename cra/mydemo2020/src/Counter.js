@@ -5,6 +5,25 @@ class Counter extends Component{
     state={
             count : 0
     }
+    incrementCount =  ()=>{
+        console.log("before", this.state.count)
+      this.setState(({count})=>({
+            count : count + 1
+        }), ()=> console.log("in 1 "))
+        this.setState(({count})=>({
+            count : count + 1
+        }),()=> console.log("2"))
+        this.setState(({count})=>({
+            count : count + 1
+        }),()=> console.log("3"))
+       
+
+    }
+    decrementCount = ()=>{
+        this.setState({
+            count : this.state.count - 1
+        })
+    }
        
     render(){
         const {count} = this.state
