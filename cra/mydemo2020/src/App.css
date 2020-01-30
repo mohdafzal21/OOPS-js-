@@ -17,6 +17,20 @@
   border : 2px solid black
 }
 
+.nav{
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  border: 2px solid black;
+}
+
+.grid-container{
+  display: grid;
+  padding: 10px;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 5px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
