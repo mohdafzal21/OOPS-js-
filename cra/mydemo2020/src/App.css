@@ -6,6 +6,10 @@
   height: 40vmin;
   pointer-events: none;
 }
+.selected{
+  color: red;
+  border: 2px solid red;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
