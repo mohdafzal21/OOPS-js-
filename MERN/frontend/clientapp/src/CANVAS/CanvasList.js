@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Canvas from './Canvas'
+import {Canvas} from './Canvas'
+import styled from 'styled-components'
+
 export default class CanvasList extends Component {
    state ={
        canvasList : []
@@ -12,19 +14,29 @@ export default class CanvasList extends Component {
         })
     }
     componentWillUnmount(){
-        console.log("List unmounted")
+     this.setState({
+         canvasList :[]
+     })
     }
 
     render() {
         const {canvasList} = this.state
         return (
-            <div style={{display:"grid" , gridTemplateColumns:"repeat(3,1fr)" ,gridGap:'5px'}}>   
+            <MovieGrid >   
               {canvasList.map((canva)=>(
                  
                   <Canvas {...canva} key={canva._id} />
               ))}  
               
-            </div>
+            </MovieGrid>
         )
     }
 }
+
+
+const MovieGrid = styled.div`
+display : grid;
+padding : 1rem;
+grid-template-columns: repeat(6,1fr);
+grid-row-gap: 1rem;
+`
