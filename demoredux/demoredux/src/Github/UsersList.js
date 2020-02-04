@@ -9,39 +9,31 @@ import {getUsersList} from './useraction'
      constructor(props){
          super(props)
          console.log("1")
-         this.state = {
-             usersList  :[],
-             loading : true
-         }
+        
      }
-    // state = {
-    //     usersList : []
-    // }
+    
     async componentDidMount() {
         console.log("3 : cdm")
 
-        // this.props.getUsersList()
-       const response = await axios.get('https://api.github.com/users')
-       this.setState({
-           usersList : response.data,
-           loading : false
-       })
+         this.props.getUsersList()
+     
     }
 
     render() {
-        const {usersList,loading} = this.state
-        console.log("2 : render")
+        const {usersList,isUserListLoading} = this.props
+        console.log("2 : render" , this.props)
 
         return (
             <UserGrid>
-                 {loading ? 'loading. . .' :usersList.map((user)=> <User {...user} key={user.id}/>) }
+                 {isUserListLoading ? 'loading. . .' :usersList.map((user)=> <User {...user} key={user.id}/>) }
             </UserGrid>
         )
     }
 }
 
 const mapStateToProps = state =>({
-    usersList :  state.userReducer.usersList
+    usersList :  state.userReducer.usersList,
+    isUserListLoading : state.userReducer.isUserListLoading
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
