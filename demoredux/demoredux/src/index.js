@@ -7,6 +7,7 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import{ rootReducer } from './rootReducer'
 import { composeWithDevTools } from 'redux-devtools-extension';
+import {BrowserRouter as Router} from 'react-router-dom'
 const store = createStore(
     rootReducer, 
     {},
@@ -14,7 +15,9 @@ const store = createStore(
 )
 ReactDOM.render(
 <Provider store={store}>
+    <Router>
         <App />
+    </Router>
 </Provider>
 , document.getElementById('root'));
 //fb=n
