@@ -33,7 +33,6 @@ export default class UsersDetail extends Component {
 
 const RepoCard = (props)=>{
     const {repo,payload} = props
-   console.log(payload)
    let msg 
    if(payload.hasOwnProperty('commits')){
         msg = payload.commits.length
@@ -43,7 +42,7 @@ const RepoCard = (props)=>{
     return(
         <RepoStyleCard>
          <h2>{repo.name}</h2>
-        <h2>Commits Count : {msg}</h2>
+        <h2>{msg}</h2>
         </RepoStyleCard>
     )
 }
@@ -53,5 +52,6 @@ const RepoCard = (props)=>{
 const RepoStyleCard = styled.div`
         background: papayawhip;
          border : 2px solid black;
-        box-shadow: 0 0 15px solid black;
+         box-shadow : 14px 20px 20px 0px black;
+
 `
