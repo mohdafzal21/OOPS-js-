@@ -18,7 +18,7 @@ export default class UsersDetail extends Component {
     render() {
         // console.log(this.props.match.params)
         const {userrepos,loading} = this.state
-        // console.log(userrepos)
+        console.log(userrepos)
         return (
             <UserGrid>
                {loading ? 'loading ...' : 
@@ -39,6 +39,7 @@ const RepoCard = (props)=>{
    }else{
         msg = 0
    }
+   
     return(
         <RepoStyleCard>
          <h2>{repo.name}</h2>

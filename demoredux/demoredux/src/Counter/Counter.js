@@ -24,7 +24,9 @@ const mapStateToProps = state =>({
 const mapDispatchToProps = dispatch =>bindActionCreators({
     incrementCount,decrementCount,resetCount
 },dispatch)
-
+// dispatch({
+//     type :'INC'
+// })
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter)
