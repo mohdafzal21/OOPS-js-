@@ -14,8 +14,9 @@ import {getUsersList} from './useraction'
     
     async componentDidMount() {
         console.log("3 : cdm")
-
-         this.props.getUsersList()
+        if(this.props.isUserListLoading ){
+            this.props.getUsersList()
+        }
      
     }
 

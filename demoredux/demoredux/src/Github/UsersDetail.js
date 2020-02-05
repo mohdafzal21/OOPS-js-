@@ -1,28 +1,39 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import {UserGrid} from './UsersList'
-export default class UsersDetail extends Component {
-    state = {
-      userrepos : [],
-      loading : true
-    }
+import {connect} from 'react-redux'
+import {getUsersDetail,resetUserDetail} from './useraction'
+import {bindActionCreators} from 'redux'
+ class UsersDetail extends PureComponent {
+    // state = {
+    //   userrepos : [],
+    //   loading : true
+    // }
     async componentDidMount(){
-          const response =await axios.get(`https://api.github.com/users/${this.props.match.params.name}/events`)
-          this.setState({
-              userrepos : response.data,
-              loading : false
-          })
+        //   const response =await axios.get(`https://api.github.com/users/${this.props.match.params.name}/events`)
+        //   this.setState({
+        //       userrepos : response.data,
+        //       loading : false
+        //   })
+        this.props.getUsersDetail(this.props.match.params.name)
     }
+
+    componentWillUnmount(){
+        //cleaning side effects
+        //
+        this.props.resetUserDetail()
+    }
+
 
     render() {
         // console.log(this.props.match.params)
-        const {userrepos,loading} = this.state
+        const {userrepos} = this.props
         console.log(userrepos)
         return (
             <UserGrid>
-               {loading ? 'loading ...' : 
-               userrepos.map((user)=> <RepoCard {...user} key={user.id}/> )
+               
+               {userrepos.map((user)=> <RepoCard {...user} key={user.id}/> )
                }
             </UserGrid>
         )
@@ -30,6 +41,15 @@ export default class UsersDetail extends Component {
 }
 
 
+const mapStateToProps = state =>({
+    userrepos : state.userReducer.usersDetail
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    getUsersDetail,resetUserDetail
+},dispatch)
+
+export default connect(mapStateToProps,mapDispatchToProps)(UsersDetail)
 
 const RepoCard = (props)=>{
     const {repo,payload} = props

@@ -15,5 +15,4 @@ export const Poster = styled.img`
 width : 200px;
 height : 250px;
 box-shadow : 14px 20px 20px 0px black;
-
 `

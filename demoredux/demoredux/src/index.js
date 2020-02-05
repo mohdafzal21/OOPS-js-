@@ -10,10 +10,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {BrowserRouter as Router} from 'react-router-dom'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
+import { save, load } from "redux-localstorage-simple"
 const store = createStore(
     rootReducer, 
-    {},
-    composeWithDevTools(applyMiddleware(thunk,logger))
+    load(),
+    composeWithDevTools(applyMiddleware(thunk,logger,save()))
 )
 ReactDOM.render(
 <Provider store={store}>
